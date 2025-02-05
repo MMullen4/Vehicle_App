@@ -16,6 +16,7 @@ class Cli {
 
   // TODO: Update the constructor to accept Truck and Motorbike objects as well
   constructor(vehicles: (Car)[]) {
+    
     this.vehicles = vehicles;
   }
 
