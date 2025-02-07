@@ -185,8 +185,8 @@ class Cli {
           parseInt(answers.year),
           parseInt(answers.weight),
           parseInt(answers.topSpeed),
+          [],
           parseInt(answers.towingCapacity),
-          []
         );
         // TODO: push the truck to the vehicles array
         // TODO: set the selectedVehicleVin to the vin of the truck
@@ -271,9 +271,7 @@ class Cli {
           parseInt(answers.year),
           parseInt(answers.weight),
           parseInt(answers.topSpeed),
-          frontWheel,
-          rearWheel,
-          [],
+          [frontWheel, rearWheel] // all wrapped into wheels array
         );
         // TODO: push the motorbike to the vehicles array
         // TODO: set the selectedVehicleVin to the vin of the motorbike
@@ -293,7 +291,7 @@ class Cli {
           type: 'list',
           name: 'vehicleToTow',
           message: `Select a vehicle to tow with ${truck.make} ${truck.model}`,
-          choices: this.vehicles.map((vehicle) => vehicle.weight <= truck.towingCapacity) //only show vehilces the truck can tow
+          choices: this.vehicles.filter((vehicle) => vehicle.weight <= truck.towingCapacity) //only show vehilces the truck can tow
             .map((vehicle) => {
               return {
                 name: `${vehicle.vin} -- ${vehicle.make} ${vehicle.model} (${vehicle.weight} lbs)`,
@@ -415,7 +413,8 @@ class Cli {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
               if (this.vehicles[i] instanceof Motorbike) {
-                this.vehicles[i].wheelie();
+                const motorBike = this.vehicles[i] as Motorbike;
+                motorBike.wheelie();
               } else {
                 console.log('You can only wheelie with a motorbike.');
                 this.performActions();
