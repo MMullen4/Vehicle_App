@@ -4,25 +4,20 @@ import Truck from "./Truck.js";
 import Car from "./Car.js";
 import Motorbike from "./Motorbike.js";
 import Wheel from "./Wheel.js";
-import Vehicle from "./Vehicle.js";
+// import Vehicle from "./Vehicle.js";
 
-// define the Cli class
-// update the vehicles property to accept Truck and Motorbike objects as well
-// use the Union operator to define additional types for the array
-class Cli {
-  vehicles: (Car | Truck | Motorbike)[];
+class Cli { // define the Cli class
+  vehicles: (Car | Truck | Motorbike)[]; // updated to accept Truck and Motorbike objects with Union operator
   selectedVehicleVin: string | undefined;
   exit: boolean = false;
 
-  // constructor to accept Truck and Motorbike objects as well
-  constructor(vehicles: (Car | Truck | Motorbike)[]) {
+  constructor(vehicles: (Car | Truck | Motorbike)[]) {   // constructor to accept Truck and Motorbike objects as well
     this.vehicles = vehicles;
   }
 
   // static method to generate a vin
   static generateVin(): string {
-    // return a random string
-    return (
+    return (     // return a random string
       Math.random().toString(36).substring(2, 15) +
       Math.random().toString(36).substring(2, 15)
     );
@@ -116,7 +111,7 @@ class Cli {
       ])
       .then((answers) => {
         const car = new Car(
-          // TODO: The generateVin method is static and should be called using the class name Cli, make sure to use Cli.generateVin() for creating a truck and motorbike as well!
+          // The generateVin method is static and should be called using the class name Cli.
           Cli.generateVin(),
           answers.color,
           answers.make,
@@ -334,13 +329,11 @@ class Cli {
           ],
         },
       ])
-      .then((answers) => {
-        // perform the selected action
+      .then((answers) => { // perform the selected action
         if (answers.action === 'Print details') {
-          // find the selected vehicle and print its details
-          for (let i = 0; i < this.vehicles.length; i++) {
-            if (this.vehicles[i].vin === this.selectedVehicleVin) {
-              this.vehicles[i].printDetails();
+          for (let i = 0; i < this.vehicles.length; i++) {  
+          if (this.vehicles[i].vin === this.selectedVehicleVin) {
+            this.vehicles[i].printDetails(); // find the selected vehicle and print its details
             }
           }
         } else if (answers.action === 'Start vehicle') {
@@ -395,16 +388,17 @@ class Cli {
         } else if (answers.action === 'Tow') {
           // find the selected vehicle and check if it is a truck
           // Call the findVehicleToTow method to find a vehicle to tow and pass the selected truck as an argument, then return to avoid instantly calling the performActions method again since findVehicleToTow is asynchronous.
-          const selectedVehicle = this.vehicles.find(
+          const selectedTruck = this.vehicles.find(
             (vehicle) => vehicle.vin === this.selectedVehicleVin
           );
-          if (selectedVehicle instanceof Truck) {
+          if (selectedTruck instanceof Truck) {
             // find a vehicle to tow
-            this.findVehicleToTow(selectedVehicle);
+            this.findVehicleToTow(selectedTruck);
             return;
           } else {
             console.log('You can only tow with a truck.');
-            this.performActions();
+            // this.performActions();
+            // return;
           }
         }
 
@@ -413,12 +407,12 @@ class Cli {
           // find the selected vehicle and wheelie
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
+              const motorBike = this.vehicles[i] as Motorbike;
               if (this.vehicles[i] instanceof Motorbike) {
-                const motorBike = this.vehicles[i] as Motorbike;
                 motorBike.wheelie();
               } else {
                 console.log('You can only wheelie with a motorbike.');
-                this.performActions();
+                // this.performActions();
               }
             }
           }
