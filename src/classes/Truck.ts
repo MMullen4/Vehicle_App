@@ -51,22 +51,16 @@ class Truck extends Vehicle implements AbleToTow { // TODO: Declare properties o
     this.towingCapacity = towingCapacity;
   }
   // TODO: Implement the tow method from the AbleToTow interface
-  
   tow(vehicle: Truck | Motorbike | Car): void { // former boolean
     if (!this.started) {
       console.log('Please start the truck first');
       return;
     }
-    if (vehicle.weight > this.towingCapacity) {
+    if (vehicle.weight > this.towingCapacity) { // vehicle wt is greater than truck's towing cap
       console.log(`The ${vehicle.make} ${vehicle.model} is too heavy to be towed`);
       return;
     }
 
-    // if (this.currentlyTowing) {
-    //   console.log(`Already towing a vehicle. Cannot tow ${vehicle.make} ${vehicle.model}.`);
-    //   return;
-    // }
-    // this.currentlyTowing = vehicle;
     console.log(`Towing ${vehicle.make} ${vehicle.model}`);
     return;
   }

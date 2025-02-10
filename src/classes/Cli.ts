@@ -287,6 +287,7 @@ class Cli { // define the Cli class
                 name: `${vehicle.vin} -- ${vehicle.make} ${vehicle.model} (${vehicle.weight} lbs)`,
                 value: vehicle,
               };
+            
             }),
         },
       ])
