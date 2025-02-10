@@ -2,7 +2,7 @@
 ![Static Badge](https://img.shields.io/badge/License-Apache-brightgreen)
 
   ## Description
-  A TypeScript command-line application that builds cars, motorbikes and trucks. Various options are available for the user to impliment actions associated with each vehilce.
+  A TypeScript command-line application that builds cars, motorbikes and trucks. Various options are available for the user to impliment actions associated with each vehicle.
 
   ## Table of Contents
   - [Installation](#installation)
